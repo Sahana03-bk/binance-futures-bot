@@ -2,3 +2,32 @@ venv/
 .env
 logs/
 __pycache__/
+# Virtual environment
+venv/
+env/
+ENV/
+
+# Environment variables
+.env
+
+# Logs
+logs/
+*.log
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Distribution / packaging
+build/
+dist/
+*.egg-info/
+
+# VS Code
+.vscode/
+
+# OS files
+.DS_Store
+Thumbs.db
