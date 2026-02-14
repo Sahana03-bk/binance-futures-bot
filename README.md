@@ -96,7 +96,9 @@ pip install -r requirements.txt
 Create a `.env` file in the root directory:
 
 BINANCE_API_KEY=your_api_key_here
+
 BINANCE_API_SECRET=your_secret_key_here
+
 BINANCE_BASE_URL=https://testnet.binance.vision
 
 
