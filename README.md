@@ -77,12 +77,16 @@ cd binance-futures-bot
 ### 2. Create Virtual Environment
 
 Windows:
+
 python -m venv venv
+
 venv\Scripts\activate
 
 
 Mac/Linux:
+
 python -m venv venv
+
 source venv/bin/activate
 
 
@@ -114,6 +118,7 @@ Testnet funds are virtual.
 ### View Help
 
 python cli.py --help
+
 python cli.py order --help
 
 
@@ -122,9 +127,13 @@ python cli.py order --help
 ### Place Market Order
 
 python cli.py order place
+
 --symbol BTCUSDT
+
 --side BUY
+
 --type MARKET
+
 --quantity 0.001
 
 
@@ -133,10 +142,15 @@ python cli.py order place
 ### Place Limit Order
 
 python cli.py order place
+
 --symbol BTCUSDT
+
 --side SELL
+
 --type LIMIT
+
 --quantity 0.001
+
 --price 70000
 
 
@@ -152,8 +166,11 @@ logs/app.log
 Logs include:
 
 - Timestamp
+- 
 - Order request details
+- 
 - API response
+- 
 - Errors (if any)
 
 ---
