@@ -166,11 +166,8 @@ logs/app.log
 Logs include:
 
 - Timestamp
-- 
 - Order request details
-- 
 - API response
-- 
 - Errors (if any)
 
 ---
