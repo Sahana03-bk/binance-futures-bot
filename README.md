@@ -1,110 +1,84 @@
-# binance-futures-bot
-# binance-futures-bot
-Production-ready Binance Futures Testnet trading bot built with Python, featuring CLI interface, environment-based configuration, logging, validation, and modular architecture.
-
-Binance Testnet Trading Bot (Python CLI)
+# Binance Spot Testnet Trading Bot (Python CLI)
 
 A modular Python-based trading bot that executes Market and Limit orders using the Binance Spot Testnet API.
 
 Built with structured architecture, CLI interface, environment-based configuration, logging, and validation.
 
-Project Overview
+---
 
-This project implements a command-line trading application that:
+## Project Overview
 
-Connects securely to Binance Testnet
+This application:
 
-Accepts user input via CLI
+- Connects securely to Binance Spot Testnet
+- Accepts order parameters via CLI
+- Validates user inputs
+- Places Market and Limit orders
+- Logs API requests and responses
+- Displays formatted order summaries
 
-Validates order parameters
+The architecture separates:
 
-Places Market and Limit orders
+- API client layer
+- Business logic layer
+- Validation layer
+- Logging layer
+- CLI interface layer
 
-Logs API requests and responses
+---
 
-Displays formatted order summaries
+## Why Binance Spot Testnet Was Used
 
-The application follows a modular architecture separating:
+The assignment mentioned Binance Futures Testnet (USDT-M).
 
-API client layer
+However, Futures Testnet access may be region-restricted. Due to this limitation, Binance Spot Testnet was used:
 
-Business logic layer
-
-Validation layer
-
-Logging layer
-
-CLI interface layer
-
-Important Note on Exchange Selection
-
-The assignment mentions Binance Futures Testnet (USDT-M).
-
-However, the Futures Testnet interface may be region-restricted or unavailable in certain locations. Due to this limitation, the implementation uses:
-
-Binance Spot Testnet
 Base URL:
-
 https://testnet.binance.vision
 
+The architecture and authentication logic remain identical.  
+The system can be adapted to Futures Testnet by modifying the base URL and client module.
 
-The architecture and API interaction logic remain identical in structure:
+---
 
-Authenticated requests
+## Features
 
-HMAC-SHA256 signature
+- Market Orders (BUY / SELL)
+- Limit Orders (BUY / SELL)
+- Structured CLI commands
+- Input validation
+- Logging to file
+- Environment-based configuration (.env)
+- Rich formatted terminal output
 
-Order placement endpoints
+---
 
-Error handling
-
-Logging
-
-Only the endpoint type differs (Spot vs Futures).
-The design is fully extensible to Futures Testnet by changing the base URL and client module.
-
-Features
-
-Market Orders (BUY / SELL)
-
-Limit Orders (BUY / SELL)
-
-Structured CLI commands
-
-Input validation
-
-Logging to file
-
-Environment-based configuration (.env)
-
-Rich formatted terminal output
-
-Modular, reusable architecture
-
-Project Structure
-binance_futures_bot/
+binance-futures-bot/
 │
 ├── bot/
-│   ├── __init__.py
-│   ├── client.py          # Binance API client wrapper
-│   ├── orders.py          # Order execution logic
-│   ├── validators.py      # Input validation
-│   ├── logging_config.py  # Logging setup
+│ ├── client.py
+│ ├── orders.py
+│ ├── validators.py
+│ ├── logger_config.py
 │
-├── logs/                  # Application logs
-│
-├── cli.py                 # CLI entry point
-├── .env                   # Environment variables (not committed)
-├── .gitignore
+├── logs/
+├── cli.py
 ├── requirements.txt
+├── .gitignore
 └── README.md
 
-Setup Instructions
-1. Clone Repository
-git clone https://github.com/YOUR_USERNAME/binance-futures-bot.git
+
+---
+
+## Setup Instructions
+
+### 1. Clone Repository
+git clone https://github.com/Sahana03-bk/binance-futures-bot.git
+
 cd binance-futures-bot
 
-2. Create Virtual Environment
+### 2. Create Virtual Environment
+
 
 Windows:
 
@@ -117,12 +91,11 @@ Mac/Linux:
 python -m venv venv
 source venv/bin/activate
 
-3. Install Dependencies
+ ### 3. Install Dependencies
 pip install -r requirements.txt
 
-4. Configure API Keys
-
-Create a .env file in the root directory:
+### 4. Configure API Keys
+Create a `.env` file in the root directory:
 
 BINANCE_API_KEY=your_api_key_here
 BINANCE_API_SECRET=your_secret_key_here
@@ -132,107 +105,97 @@ BINANCE_BASE_URL=https://testnet.binance.vision
 API keys can be generated from:
 https://testnet.binance.vision
 
-Testnet funds are virtual and automatically provided.
+Testnet funds are virtual.
 
-CLI Usage
+---
 
-The application uses a structured CLI built with Typer.
+## CLI Usage
 
-View Help
+### View Help
+
 python cli.py --help
-
 python cli.py order --help
 
-Place Market Order
-python cli.py order place \
-    --symbol BTCUSDT \
-    --side BUY \
-    --type MARKET \
-    --quantity 0.001
 
-Place Limit Order
-python cli.py order place \
-    --symbol BTCUSDT \
-    --side SELL \
-    --type LIMIT \
-    --quantity 0.001 \
-    --price 70000
+---
 
-What the Application Does Internally
+### Place Market Order
 
-Loads API credentials from environment variables
+python cli.py order place
+--symbol BTCUSDT
+--side BUY
+--type MARKET
+--quantity 0.001
 
-Initializes Binance client
 
-Validates user inputs
+---
 
-Constructs authenticated request
+### Place Limit Order
 
-Sends order to Binance Testnet
+python cli.py order place
+--symbol BTCUSDT
+--side SELL
+--type LIMIT
+--quantity 0.001
+--price 70000
 
-Logs request and response
 
-Displays formatted order summary
+---
 
-Logging
+## Logging
 
 All API activity is logged in:
 
 logs/app.log
 
 
-Each log entry includes:
+Logs include:
 
-Timestamp
+- Timestamp
+- Order request details
+- API response
+- Errors (if any)
 
-Order request details
+---
 
-API response
-
-Error messages (if any)
-
-Error Handling
+## Error Handling
 
 The system handles:
 
-Invalid symbol
-
-Invalid order type
-
-Missing price for LIMIT orders
-
-API response errors
-
-Network failures
-
-Improper CLI usage
+- Invalid symbol
+- Invalid order type
+- Missing price for LIMIT orders
+- API errors
+- Network failures
 
 Errors are logged and displayed clearly.
 
-Assumptions
+---
 
-Spot Testnet used due to Futures Testnet accessibility constraints
+## Security Notice
 
-Testnet funds are virtual
+Never commit your `.env` file or API keys to GitHub.
 
-Only Market and Limit orders implemented as required
+Ensure `.gitignore` contains:
 
-No real trading or financial risk involved
+.env
+venv/
+logs/
 
-Extensibility
 
-The architecture allows easy extension to:
+---
 
-Binance Futures Testnet
+## Summary
 
-Stop-Limit orders
+This project demonstrates:
 
-OCO orders
+- Secure API integration
+- Structured CLI design
+- Modular architecture
+- Proper logging
+- Validation and error handling
+- Clean project structure
 
-Account balance commands
 
-Open orders listing
+## Project Structure
 
-Strategy automation
-
-Web-based interface
