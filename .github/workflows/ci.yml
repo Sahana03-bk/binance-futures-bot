@@ -1,27 +1,28 @@
-name: Python CI
+name: Auto Create PR
 
 on:
   push:
-    branches: [main]
+    branches:
+      - auto-pr
+
+permissions:
+  contents: read
+  pull-requests: write
 
 jobs:
-  test:
+  create-pr:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Get code
+      - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Set up Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: "3.12"
-
-      - name: Install dependencies
-        run: pip install -r requirements.txt
-
-      - name: Install testing tools
-        run: pip install pytest httpx
-
-      - name: Run tests
-        run: PYTHONPATH=. pytest
+      - name: Create Pull Request
+        run: |
+          gh pr create \
+            --base master \
+            --head auto-pr \
+            --title "Automatic Pull Request" \
+            --body "This Pull Request was created automatically by GitHub Actions."
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
