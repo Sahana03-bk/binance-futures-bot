@@ -1,4 +1,4 @@
-name: Manual Workflow
+name: Python CI
 
 on:
   push:
@@ -9,9 +9,9 @@ on:
   workflow_dispatch:
 
 jobs:
-  manual-test:
+  trigger-test:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Say hello
-        run: echo "Hello! This workflow was started manually."
+      - name: Show message
+        run: echo "Python CI workflow is running!"
