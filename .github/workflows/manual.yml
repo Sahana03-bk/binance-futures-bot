@@ -9,9 +9,16 @@ on:
   workflow_dispatch:
 
 jobs:
-  trigger-test:
+  test:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Show message
-        run: echo "Python CI workflow is running!"
+      - name: Test job
+        run: echo "Running tests"
+
+  check-python:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check Python
+        run: python --version
