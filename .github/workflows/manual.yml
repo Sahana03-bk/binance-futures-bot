@@ -14,4 +14,4 @@ jobs:
 
     steps:
       - name: Show message
-        run: echo "Python CI workflow is running!"
+        run: echo "Python CI PR test is running!"
