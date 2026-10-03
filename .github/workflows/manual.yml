@@ -13,8 +13,12 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Test job
-        run: echo "Running tests"
+      - name: Test
+        run: echo "Testing..."
+
+      - name: Success message
+        if: success()
+        run: echo "Test completed successfully!"
 
   check-python:
     needs: test
