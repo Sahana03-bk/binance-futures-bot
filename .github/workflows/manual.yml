@@ -7,8 +7,7 @@ on:
   pull_request:
 
   workflow_dispatch:
-
-  env:
+env:
   APP_NAME: "Python CI Practice"
 
 jobs:
