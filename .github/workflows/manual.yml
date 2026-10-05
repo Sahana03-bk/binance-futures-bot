@@ -15,21 +15,7 @@ jobs:
   test:
     runs-on: ubuntu-latest
 
-    
-
-      - name: Success message
-        if: success()
-        run: echo "Test completed successfully!"
-
-  check-python:
-    needs: test
-    runs-on: ubuntu-latest
-
     steps:
-      - name: Check Python
-        run: python --version
-
-        steps:
       - name: Test
         run: echo "Testing..."
 
@@ -43,3 +29,15 @@ jobs:
             echo "Secret is missing"
             exit 1
           fi
+
+      - name: Success message
+        if: success()
+        run: echo "Test completed successfully!"
+
+  check-python:
+    needs: test
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check Python
+        run: python --version
