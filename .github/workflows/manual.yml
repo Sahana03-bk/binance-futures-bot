@@ -8,6 +8,9 @@ on:
 
   workflow_dispatch:
 
+  env:
+  APP_NAME: "Python CI Practice"
+
 jobs:
   test:
     runs-on: ubuntu-latest
