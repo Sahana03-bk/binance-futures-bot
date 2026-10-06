@@ -40,6 +40,31 @@ jobs:
           name: test-report
           path: report.txt
 
+  build:
+    needs: test
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Build application
+        run: echo "Building application..."
+
+      - name: Create build file
+        run: echo "Python application build" > build.txt
+
+      - name: Upload build
+        uses: actions/upload-artifact@v4
+        with:
+          name: application-build
+          path: build.txt
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Deploy application
+        run: echo "Deploying application..."
+
   check-python:
     needs: test
     runs-on: ubuntu-latest
